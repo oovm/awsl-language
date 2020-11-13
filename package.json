@@ -1,0 +1,14 @@
+{
+    "private": true,
+    "license": "MPL-2.0",
+    "scripts": {
+        "dev": "vuepress dev docs",
+        "update": "wee upgrade --latest",
+        "test": "wee install && yarn start",
+        "build": "vuepress build docs"
+    },
+    "dependencies": {
+        "vuepress": "^1.7.1",
+        "vuepress-plugin-shiki": "^0.2.6"
+    }
+}
