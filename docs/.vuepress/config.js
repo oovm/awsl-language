@@ -30,6 +30,9 @@ const locale_cn = {
                 title: '进阶',
                 collapsable: false,
                 children: [
+                    ['advance/', '进阶开发'],
+                    ['advance/bottom-up-build', '自底向上构造'],
+                    ['advance/top-down-build', '自顶向下构造'],
                 ]
             },
             {
