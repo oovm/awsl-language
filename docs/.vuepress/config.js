@@ -16,38 +16,26 @@ const locale_cn = {
                 title: '概览',
                 collapsable: false,
                 children: [
-                    ['starter/', '安装与运行'],
-                    ['starter/literal', '基本语法'],
-                    ['starter/function', '函数调用'],
-                    ['starter/repl', '交互式环境'],
                 ]
             },
             {
                 title: '入门',
                 collapsable: false,
                 children: [
-                    ['basic/', '其他语法'],
-                    ['basic/function', '函数综述'],
-                    ['basic/lambda', '匿名函数'],
-                    ['basic/control', '控制流'],
-                    ['basic/scope', '作用域'],
-                    ['basic/questions', '疑难解答'],
+                    ['basic/', '基本语法'],
+                    ['basic/control-flow', '控制流'],
                 ]
             },
             {
                 title: '进阶',
                 collapsable: false,
                 children: [
-                    ['advance/', '进阶知识'],
                 ]
             },
             {
                 title: '开发',
                 collapsable: false,
                 children: [
-                    ['developer/', '实现细节'],
-                    ['developer/operators', '运算优先级'],
-                    ['developer/shortcoming', '语法问题'],
                 ]
             },
         ],
@@ -122,7 +110,7 @@ module.exports = {
                         id: 'awsl',
                         scopeName: 'source.awsl',
                         path: path.resolve(__dirname, 'public/awsl.tmLanguage.json'),
-                        aliases: []
+                        aliases: ['awsl']
                     }
                 ]
             }
