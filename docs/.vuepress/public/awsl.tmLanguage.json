@@ -1,9 +1,13 @@
 {
     "version": "v0.1.0",
     "scopeName": "source.awsl",
+    "uuid": "77108132-b3a9-4456-b8e6-05fca177371a",
     "information_for_contributors": [
         "aster: galaster@foxmail.com"
     ],
+    "keyEquivalent": "^~H",
+    "foldingStartMarker": "(?x)\n(<(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|li|form|dl)\\b.*?>\n|<!--(?!.*--\\s*>)\n|^<!--\\ \\#tminclude\\ (?>.*?-->)$\n|<\\?(?:php)?.*\\b(if|for(each)?|while)\\b.+:\n|\\{\\{?(if|foreach|capture|literal|foreach|php|section|strip)\n|\\{\\s*($|\\?>\\s*$|//|/\\*(.*\\*/\\s*$|(?!.*?\\*/)))\n)",
+    "foldingStopMarker": "(?x)\n(</(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|li|form|dl)>\n|^(?!.*?<!--).*?--\\s*>\n|^<!--\\ end\\ tminclude\\ -->$\n|<\\?(?:php)?.*\\bend(if|for(each)?|while)\\b\n|\\{\\{?/(if|foreach|capture|literal|foreach|php|section|strip)\n|^[^{]*\\}\n)",
     "patterns": [
         {
             "include": "#comment"
@@ -79,12 +83,16 @@
                     "name": "keyword.control.definition.awsl"
                 },
                 {
-                    "match": "\\b(if|else|ef|switch|match|case)\\b",
+                    "match": "\\b(switch|match|case)\\b",
                     "name": "keyword.control.flow.awsl"
                 },
                 {
                     "match": "\\b(do|while|loop|return|yield|break|pass)\\b",
                     "name": "keyword.control.loop.awsl"
+                },
+                {
+                    "match": "\\b(this|super)\\b",
+                    "name": "keyword.control.context.awsl"
                 },
                 {
                     "begin": "\\b(for)\\b",
@@ -176,42 +184,68 @@
             ]
         },
         "block": {
-            "begin": "\\b(block)\\b",
+            "begin": "\\b(block|if|ef|else(?:\\s*if)?)\\b([^{]*)(\\{)",
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.block.awsl"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "#literals"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "punctuation.definition.block.begin.awsl"
                 }
             },
-            "end": "([_0-9a-zA-Z]+)\\s*[{};]",
+            "end": "(\\})",
             "endCaptures": {
                 "1": {
-                    "name": "entity.name.type.block.awsl"
+                    "name": "punctuation.definition.block.end.awsl"
                 }
             },
             "patterns": [
                 {
-                    "match": "([_0-9a-zA-Z]+)",
-                    "name": "storage.modifier.awsl"
+                    "include": "#html"
+                },
+                {
+                    "include": "#html-escape"
+                },
+                {
+                    "include": "#html-embbed"
                 }
             ]
         },
         "extends": {
-            "begin": "\\b(extends)\\b",
+            "begin": "\\b(extends)\\b\\s*([_0-9a-zA-Z]+)\\s*(\\{)",
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.extends.awsl"
+                },
+                "2": {
+                    "name": "entity.name.type.extends.awsl"
+                },
+                "3": {
+                    "name": "punctuation.definition.block.begin.awsl"
                 }
             },
-            "end": "([_0-9a-zA-Z]+)\\s*[{};]",
+            "end": "(\\})",
             "endCaptures": {
                 "1": {
-                    "name": "entity.name.type.extends.awsl"
+                    "name": "punctuation.definition.block.end.awsl"
                 }
             },
             "patterns": [
                 {
-                    "match": "([_0-9a-zA-Z]+)",
-                    "name": "storage.modifier.awsl"
+                    "include": "#html"
+                },
+                {
+                    "include": "#html-escape"
+                },
+                {
+                    "include": "#html-embbed"
                 }
             ]
         },
@@ -580,12 +614,12 @@
         "html-embbed": {
             "contentName": "meta.embedded.expression.awsl",
             "begin": "\\{",
-            "end": "\\}",
             "beginCaptures": {
                 "0": {
                     "name": "punctuation.section.embedded.begin.awsl"
                 }
             },
+            "end": "\\}",
             "endCaptures": {
                 "0": {
                     "name": "punctuation.section.embedded.end.awsl"
@@ -616,6 +650,9 @@
             "patterns": [
                 {
                     "include": "#style-css"
+                },
+                {
+                    "include": "#script-js"
                 }
             ]
         },
@@ -707,6 +744,49 @@
                     "patterns": [
                         {
                             "include": "source.css.scss"
+                        }
+                    ]
+                }
+            ]
+        },
+        "script-js": {
+            "begin": "(<)(script)\\b(?=[^>]*type=\"(text|application)/javascript\")?(?![^/>]*/>\\s*$)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.html"
+                },
+                "2": {
+                    "name": "entity.name.tag.style.html"
+                }
+            },
+            "end": "(</)(script)(>)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.tag.begin.html"
+                },
+                "2": {
+                    "name": "entity.name.tag.style.html"
+                },
+                "3": {
+                    "name": "punctuation.definition.tag.end.html"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#literals"
+                },
+                {
+                    "contentName": "source.js",
+                    "begin": "(>)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.end.html"
+                        }
+                    },
+                    "end": "(?=</script>)",
+                    "patterns": [
+                        {
+                            "include": "source.js"
                         }
                     ]
                 }

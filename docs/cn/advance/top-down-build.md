@@ -2,6 +2,8 @@
 
 ## 自顶向下
 
+先构建整体架构: `base.awsl`
+
 ```awsl
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +22,11 @@ block head {
     }</div>
 </body>
 </html>
+```
 
+再扩展基本模板
 
-
-
-
+```awsl
 include "base";
 
 extends title {

@@ -36,6 +36,16 @@ const locale_cn = {
                 ]
             },
             {
+                title: '迁移',
+                collapsable: false,
+                children: [
+                    ['migrate/', '迁移指南'],
+                    ['migrate/from-hexo', 'Hexo 迁移'],
+                    ['migrate/from-hugo', 'Hugo 迁移'],
+                    ['migrate/from-handbars', '自顶向下构造'],
+                ]
+            },
+            {
                 title: '开发',
                 collapsable: false,
                 children: [
@@ -87,9 +97,9 @@ module.exports = {
         ['link', { rel: 'shortcut icon', type: "image/x-icon", href: './favicon.png' }]
     ],
     themeConfig: {
-        repo: 'Galaster/awsl-lang',
+        repo: 'Galaster/awsl-language',
         editLinks: true,
-        docsDir: 'projects/sm-book/docs',
+        docsDir: '.',
         markdown: {
             lineNumbers: true
         },

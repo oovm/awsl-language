@@ -2,9 +2,9 @@
 
 ## 自底向上
 
+先构建基本原件: `part.awsl`.
+
 ```awsl
-
-
 let title = </>
 
 let head = <>
@@ -16,10 +16,13 @@ let head = <>
 let footer = <>
     &copy; Copyright 2008 by <a href="http://domain.invalid/">you</a>.
 </>
+```
 
 
-import "base";
+然后引入这些原件:
 
+```awsl
+import "part.awsl";
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,36 +32,4 @@ import "base";
     <div id="footer">{base.footer}</div>
 </body>
 </html>
-
-
-
-def cdn_katex(enable: false) {
-    if enable {
-        <>
-        <p> 2</p>2
-        </>
-    }
-}
-
-
-
-include "base";
-
-extends head {
-    {super()}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-}
-
-
-extends content {
-    <h1>Index</h1>
-    <p class="important">
-    2  Welcome to my awesome homepage.
-    </p>
-}
-
-
-import "part";
 ```

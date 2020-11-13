@@ -7,25 +7,6 @@
 if a > b {
 
 }
-```
-
-## If-Else-Statement
-
-```awsl
-if a > b {
-
-}
-else {
-    e
-}
-```
-
-## If-Else-If Statement
-
-```awsl
-if a > b {
-
-}
 else if c {
 
 }
@@ -40,8 +21,8 @@ else {
 ### For Loop
 
 ```awsl
-for a in b {
-
+for x in ["apple", "orange", "banana"] {
+    <p>I like {x}</p>
 }
 ```
 
