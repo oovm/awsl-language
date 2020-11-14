@@ -40,9 +40,10 @@ const locale_cn = {
                 collapsable: false,
                 children: [
                     ['migrate/', '迁移指南'],
+                    ['migrate/from-liquid', 'Liquid 迁移'],
                     ['migrate/from-hexo', 'Hexo 迁移'],
                     ['migrate/from-hugo', 'Hugo 迁移'],
-                    ['migrate/from-handbars', '自顶向下构造'],
+
                 ]
             },
             {
@@ -84,12 +85,12 @@ module.exports = {
     locales: {
         '/cn/': {
             lang: 'zh-CN',
-            title: 'Simple Math',
+            title: 'AWSL Tutorial',
             lastUpdated: 'Last Updated',
         },
         '/en/': {
             lang: 'en-US',
-            title: 'Simple Math',
+            title: 'AWSL Tutorial',
             lastUpdated: 'Last Updated',
         }
     },
@@ -123,7 +124,7 @@ module.exports = {
                         id: 'awsl',
                         scopeName: 'source.awsl',
                         path: path.resolve(__dirname, 'public/awsl.tmLanguage.json'),
-                        aliases: ['awsl']
+                        aliases: []
                     }
                 ]
             }

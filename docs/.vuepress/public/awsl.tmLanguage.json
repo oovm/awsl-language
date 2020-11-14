@@ -1,7 +1,7 @@
 {
-    "version": "v0.1.0",
+    "version": "v0.2.0",
     "scopeName": "source.awsl",
-    "uuid": "77108132-b3a9-4456-b8e6-05fca177371a",
+    "uuid": "3be16738-a75d-43d7-aee8-e4bcfb243c07",
     "information_for_contributors": [
         "aster: galaster@foxmail.com"
     ],
@@ -139,7 +139,7 @@
                     "include": "#block"
                 },
                 {
-                    "include": "#extends"
+                    "include": "#if"
                 }
             ]
         },
@@ -183,8 +183,8 @@
                 }
             ]
         },
-        "block": {
-            "begin": "\\b(block|if|ef|else(?:\\s*if)?)\\b([^{]*)(\\{)",
+        "if": {
+            "begin": "\\b(if|ef|else(?:\\s*if)?)\\b([^{]*)(\\{)",
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.block.awsl"
@@ -208,18 +208,21 @@
             },
             "patterns": [
                 {
+                    "include": "#comment"
+                },
+                {
                     "include": "#html"
                 },
                 {
-                    "include": "#html-escape"
+                    "include": "#statements"
                 },
                 {
-                    "include": "#html-embbed"
+                    "include": "#literals"
                 }
             ]
         },
-        "extends": {
-            "begin": "\\b(extends)\\b\\s*([_0-9a-zA-Z]+)\\s*(\\{)",
+        "block": {
+            "begin": "\\b(block|extends)\\b\\s*([_0-9a-zA-Z]+)\\s*(\\{)",
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.extends.awsl"
@@ -228,13 +231,13 @@
                     "name": "entity.name.type.extends.awsl"
                 },
                 "3": {
-                    "name": "punctuation.definition.block.begin.awsl"
+                    "name": "punctuation.section.embedded.begin.awsl"
                 }
             },
             "end": "(\\})",
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.definition.block.end.awsl"
+                    "name": "punctuation.section.embedded.end.awsl"
                 }
             },
             "patterns": [
@@ -254,10 +257,6 @@
                 {
                     "match": "\\b(===?|=!=|<=|>=|<>)\\b",
                     "name": "keyword.operator.comparison.awsl"
-                },
-                {
-                    "match": "\\b(\\|>|/@|@@@|@@|@)\\b",
-                    "name": "keyword.operator.apply.awsl"
                 },
                 {
                     "match": "\\b(-|\\+|\\*|\\/|\\^)\\b",
@@ -616,13 +615,13 @@
             "begin": "\\{",
             "beginCaptures": {
                 "0": {
-                    "name": "punctuation.section.embedded.begin.awsl"
+                    "name": "punctuation.definition.block.begin.awsl"
                 }
             },
             "end": "\\}",
             "endCaptures": {
                 "0": {
-                    "name": "punctuation.section.embedded.end.awsl"
+                    "name": "punctuation.definition.block.end.awsl"
                 }
             },
             "patterns": [
@@ -750,7 +749,7 @@
             ]
         },
         "script-js": {
-            "begin": "(<)(script)\\b(?=[^>]*type=\"(text|application)/javascript\")?(?![^/>]*/>\\s*$)",
+            "begin": "(<)(script)\\b(?=[^>]*type=\"(text|application)/javascript\")(?![^/>]*/>\\s*$)",
             "beginCaptures": {
                 "1": {
                     "name": "punctuation.definition.tag.begin.html"
@@ -793,6 +792,9 @@
             ]
         },
         "string-css": {
+            "name": "unimplemented"
+        },
+        "string-js": {
             "name": "unimplemented"
         }
     }
