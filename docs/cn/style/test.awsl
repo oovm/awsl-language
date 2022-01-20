@@ -1,0 +1,47 @@
+﻿use helpers.capitalize;
+
+<div on:click=log>{msg}</div>
+
+<button on:click=handleClick>
+    Clicked {count} {if count === 1 {'time'} else {'times'}}
+</button>
+
+
+<\script>
+use dioxus::prelude::*;
+def log() {
+    console.log(msg)
+}
+
+
+let sig count = 0;
+
+def handleClick() {
+    count += 1;
+}
+
+@sinal
+if (count >= 10) {
+    alert('count is dangerously high!');
+    count = 9;
+}
+
+</script>
+
+< style>
+.button {
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px solid #e1e4e8;
+}
+</style>
+
+
+< translate>
+# Simple things are simple.
+hello-user = Hello, {$userName}!
+</translate>
+
+
+
