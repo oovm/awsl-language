@@ -28,3 +28,25 @@ component TitleCard {
 }
 </script>
 ```
+
+### 与 function 的区别
+
+构造器不同
+
+```awsl
+function a() {
+    for i in [1, 2, 3] {
+        i
+        i
+    }
+}
+```awsl
+
+```awsl
+widget a() {
+    for i in [1, 2, 3] {
+        i
+        i
+    }
+}
+```awsl
